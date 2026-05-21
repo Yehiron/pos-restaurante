@@ -2,6 +2,8 @@ package com.theburgery.pos_restaurant.entity;
 
 import java.math.BigDecimal;
 
+import org.hibernate.annotations.SQLRestriction;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,6 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@SQLRestriction("is_active = true")
 public class Product extends BaseEntity{
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +49,10 @@ public class Product extends BaseEntity{
     @Builder.Default
     private Boolean isActive = true;
 
+    /**
+     * El fetch LAZY lo que hace es realizar una consulta perezosa, 
+     * no trae lo de otras tablas
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;

@@ -37,6 +37,10 @@ public class User extends BaseEntity{
     @Column(nullable = false)
     private String password;
 
+    /**
+     * Al tener el enum como atributo lo que hacemos es guardarlo como texto en la base 
+     * de datos, Esto ayuda a que cuando agreguemos un nuevo rol, el sistema no explote
+     */
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private Role role;

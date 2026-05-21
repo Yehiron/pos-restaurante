@@ -11,6 +11,14 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 
+/**
+ * Se crea la clase Base entity para no replicar codigo, y las demas entidades
+ * heredan de esta.
+ * MappedSuperclass le dice al JPA que no es una tabla que son atributos que se 
+ * inyectan en la herencia
+ * Entitylisteners Autoriza a poner automaticamente la fecha y hora de los create y update
+ * Y en Application se debe habilitar con la anotaicion @EnableJpaAuditing
+ */
 @Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
